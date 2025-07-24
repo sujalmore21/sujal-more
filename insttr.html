@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instructor Profile - Fixed Alignment</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #4a6cf7;
+      --light-bg-alt: #f8f9fa;
+      --border-radius: 12px;
+      --transition: all 0.3s ease;
+      --border: #e0e0e0;
+      --glow: 0 0 15px rgba(74, 108, 247, 0.2);
+      --medium-text: #555;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #fff;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+      font-size: 2.2rem;
+      color: #222;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: var(--primary);
+      margin: 0.5rem auto;
+      border-radius: 2px;
+    }
+
+    /* Instructor Section */
+    .instructor {
+      background: var(--light-bg-alt);
+      padding: 4rem 0;
+    }
+
+    .instructor-container {
+      max-width: min(900px, 90%);
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+      justify-content: flex-start;
+    }
+
+    .instructor-photo {
+      flex: 1;
+      min-width: min(300px, 100%);
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .instructor-photo img {
+      width: 100%;
+      border-radius: var(--border-radius);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      border: 3px solid var(--primary);
+      transition: var(--transition);
+    }
+
+    .instructor-photo:hover img {
+      transform: scale(1.03);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    }
+
+    .instructor-details {
+      flex: 2;
+      min-width: min(300px, 100%);
+      animation: fadeInUp 0.8s ease-out 0.2s forwards;
+      opacity: 0;
+    }
+
+    .instructor-details h2 {
+      font-size: clamp(1.8rem, 3vw, 2.2rem);
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .instructor-details p {
+      margin-bottom: 1.2rem;
+      font-size: clamp(1rem, 2vw, 1.1rem);
+      line-height: 1.7;
+      color: var(--medium-text);
+    }
+
+    .stats {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 2rem;
+      margin-top: 2rem;
+      justify-content: flex-start;
+    }
+
+    .stat {
+      background: rgba(74, 108, 247, 0.05);
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      text-align: center;
+      border: 1px solid var(--border);
+      min-width: 120px;
+      transition: var(--transition);
+    }
+
+    .stat:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--glow);
+    }
+
+    .stat .number {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .stat .label {
+      font-size: 0.9rem;
+      color: var(--medium-text);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--primary);
+      color: white;
+      padding: 0.9rem 1.8rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+      margin-top: 2rem;
+      border: none;
+      cursor: pointer;
+      font-size: 1.05rem;
+    }
+
+    .btn:hover {
+      background: #3a5ae8;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(58, 90, 232, 0.3);
+    }
+
+    .offer-note {
+      margin-top: 1rem;
+      font-weight: 600;
+      color: #e74c3c;
+      font-size: 1.05rem;
+    }
+
+    .timer {
+      background: #fff9db;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      display: inline-block;
+      margin-top: 0.5rem;
+      border: 1px solid #ffe066;
+      font-weight: 700;
+      color: #e67700;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate {
+      animation-fill-mode: both;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .instructor-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        background: #f5f7fa;
+        border-radius: 24px;
+        padding: 2rem 1.5rem;
+        box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+        text-align: center;
+      }
+
+      .instructor-photo {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0 auto;
+      }
+
+      .instructor-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border: none;
+      }
+
+      .instructor-details {
+        padding: 0;
+        opacity: 1 !important;
+        animation: none;
+      }
+
+      .instructor-details h2 {
+        font-size: 1.6rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .instructor-details p {
+        font-size: 1rem;
+        text-align: center;
+      }
+
+      .stats {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      .stat {
+        min-width: 120px;
+        flex: 1 1 30%;
+        padding: 1rem;
+      }
+
+      .btn {
+        margin-top: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .instructor-container {
+        padding: 1.5rem;
+        gap: 1rem;
+      }
+
+      .instructor-photo {
+        width: 120px;
+        height: 120px;
+      }
+
+      .instructor-details h2 {
+        font-size: 1.4rem;
+        margin-top: 0.5rem;
+      }
+
+      .instructor-details p {
+        font-size: 0.95rem;
+      }
+
+      .stats {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        overflow-x: auto;
+        padding-bottom: 10px;
+        margin-top: 1.2rem;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      .stats::-webkit-scrollbar {
+        display: none;
+      }
+
+      .stat {
+        min-width: 100px;
+        flex: 0 0 auto;
+        padding: 0.8rem;
+      }
+
+      .stat .number {
+        font-size: 1.3rem;
+      }
+
+      .stat .label {
+        font-size: 0.8rem;
+      }
+
+      .btn {
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+      }
+
+      .offer-note {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="instructor" id="instructor">
+    <div class="container">
+      <h2 class="section-title">Your Instructor</h2>
+      <div class="instructor-container">
+        <div class="instructor-photo animate" style="animation-delay: 0.1s">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Sameer Bhosle">
+        </div>
+        
+        <div class="instructor-details animate" style="animation-delay: 0.3s">
+          <h2>Sameer Bhosle</h2>
+          <p><strong>Digital Growth Mentor with 15+ Years of Experience</strong></p>
+          <p>Sameer is a renowned SEO expert who has helped thousands of students and businesses achieve top rankings and measurable growth. His practical approach and industry insights have transformed careers and businesses alike.</p>
+          
+          <div class="stats">
+            <div class="stat">
+              <div class="number">1200+</div>
+              <div class="label">Students Trained</div>
+            </div>
+            <div class="stat">
+              <div class="number">87%</div>
+              <div class="label">Got Internship</div>
+            </div>
+            <div class="stat">
+              <div class="number">136+</div>
+              <div class="label">Awards & Achievements</div>
+            </div>
+          </div>
+          
+          <a href="#register" class="btn">
+            <i class="fas fa-chalkboard-teacher"></i> Learn SEO in Rs.100/-
+          </a>
+          
+          <p class="offer-note">Limited Offer! Seats Are Filling Fast</p>
+          <div class="timer">Offer Ends in 13 Min.37 Sec.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Simple countdown timer for demonstration
+    function updateTimer() {
+      const timerElement = document.querySelector('.timer');
+      if (timerElement) {
+        let minutes = 13;
+        let seconds = 37;
+        
+        const timer = setInterval(() => {
+          seconds--;
+          if (seconds < 0) {
+            minutes--;
+            seconds = 59;
+          }
+          
+          if (minutes < 0) {
+            clearInterval(timer);
+            timerElement.textContent = "Offer Expired!";
+            timerElement.style.background = "#ffe3e3";
+            timerElement.style.borderColor = "#ffa8a8";
+            timerElement.style.color = "#c92a2a";
+            return;
+          }
+          
+          timerElement.textContent = `Offer Ends in ${minutes} Min.${seconds.toString().padStart(2, '0')} Sec.`;
+        }, 1000);
+      }
+    }
+    
+    document.addEventListener('DOMContentLoaded', updateTimer);
+  </script>
+</body>
+</html>

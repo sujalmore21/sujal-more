@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SEO Masterclass - Free Live Webinar</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Base Styles */
+    :root {
+      --primary: #F59E0B;
+      --primary-dark: #D97706;
+      --primary-darker: #B45309;
+      --light: #FFFBEB;
+      --dark: #1E293B;
+      --gray: #64748B;
+      --light-gray: #F1F5F9;
+      --white: #FFFFFF;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--dark);
+      background-color: var(--white);
+      overflow-x: hidden;
+    }
+    
+    h1, h2, h3, h4 {
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    
+    p {
+      margin-bottom: 1rem;
+    }
+    
+    a {
+      text-decoration: none;
+      color: var(--primary-darker);
+      transition: var(--transition);
+    }
+    
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    
+    .section {
+      padding: 4rem 0;
+    }
+    
+    .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 3rem;
+      color: var(--primary-darker);
+      position: relative;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+    
+    .btn {
+      display: inline-block;
+      background: var(--primary);
+      color: var(--white);
+      padding: 0.8rem 1.8rem;
+      border-radius: 4px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+    }
+    
+    .btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    }
+    
+    .btn i {
+      margin-right: 8px;
+    }
+    
+    .animate {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    
+    .animate.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Header Styles */
+    header {
+      background: var(--white);
+      box-shadow: var(--shadow);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      padding: 1rem 0;
+    }
+    
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .logo i {
+      color: var(--primary);
+      font-size: 1.8rem;
+    }
+    
+    .logo-text {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--dark);
+    }
+    
+    nav {
+      display: flex;
+      gap: 2rem;
+    }
+    
+    nav a {
+      color: var(--dark);
+      font-weight: 600;
+      position: relative;
+    }
+    
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: var(--transition);
+    }
+    
+    nav a:hover::after {
+      width: 100%;
+    }
+    
+    .mobile-menu {
+      display: none;
+      cursor: pointer;
+      font-size: 1.5rem;
+      color: var(--dark);
+    }
+    
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, var(--light) 0%, var(--white) 100%);
+      padding: 8rem 0 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: -100px;
+      width: 300px;
+      height: 300px;
+      background: var(--primary);
+      border-radius: 50%;
+      opacity: 0.1;
+    }
+    
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -50px;
+      left: -50px;
+      width: 200px;
+      height: 200px;
+      background: var(--primary);
+      border-radius: 50%;
+      opacity: 0.1;
+    }
+    
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .hero h2 {
+      font-size: 2.8rem;
+      color: var(--primary-darker);
+      margin-bottom: 1.5rem;
+    }
+    
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--dark);
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+    
+    .countdown-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--primary-darker);
+      margin: 2rem 0 1rem;
+    }
+    
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .countdown-item {
+      background: var(--white);
+      border-radius: 8px;
+      padding: 1rem;
+      min-width: 80px;
+      box-shadow: var(--shadow);
+    }
+    
+    .countdown-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary-darker);
+    }
+    
+    .countdown-label {
+      font-size: 0.9rem;
+      color: var(--gray);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .image-container {
+      margin: 2rem auto;
+      max-width: 800px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      position: relative;
+    }
+    
+    .image-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: var(--transition);
+    }
+    
+    .image-box:hover .image-overlay {
+      opacity: 1;
+    }
+    
+    .play-icon {
+      width: 70px;
+      height: 70px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .play-icon i {
+      color: var(--white);
+      font-size: 1.8rem;
+      margin-left: 5px;
+    }
+    
+    .play-icon:hover {
+      transform: scale(1.1);
+      background: var(--primary-dark);
+    }
+    
+    /* Trusted Section */
+    .trusted {
+      background: var(--light-gray);
+      padding: 3rem 0;
+    }
+    
+    .trusted .section-title {
+      margin-bottom: 2rem;
+    }
+    
+    .logos {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 3rem;
+      align-items: center;
+    }
+    
+    .logos img {
+      height: 40px;
+      opacity: 0.7;
+      transition: var(--transition);
+    }
+    
+    .logos img:hover {
+      opacity: 1;
+    }
+    
+    /* Testimonials */
+    .testimonials {
+      background: var(--white);
+    }
+    
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .card {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      border-top: 4px solid var(--primary);
+    }
+    
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    
+    .card-content {
+      position: relative;
+    }
+    
+    .card-content p {
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+    
+    .card-content p::before {
+      content: '"';
+      position: absolute;
+      top: -15px;
+      left: 0;
+      font-size: 3rem;
+      color: var(--primary);
+      opacity: 0.3;
+    }
+    
+    .author {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--gray);
+    }
+    
+    .author i {
+      color: var(--primary);
+    }
+    
+    /* Agenda & Bonuses */
+    .agenda-bonuses {
+      background: linear-gradient(to right, var(--light) 50%, var(--white) 50%);
+    }
+    
+    .agenda-bonuses > .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    
+    .agenda, .bonuses {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: var(--shadow);
+    }
+    
+    .agenda {
+      border-left: 4px solid var(--primary);
+    }
+    
+    .bonuses {
+      border-right: 4px solid var(--primary);
+    }
+    
+    .agenda h3, .bonuses h3 {
+      color: var(--primary-darker);
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+    }
+    
+    .agenda ul {
+      list-style: none;
+    }
+    
+    .agenda li {
+      padding: 0.8rem 0;
+      border-bottom: 1px solid var(--light-gray);
+      position: relative;
+      padding-left: 1.5rem;
+    }
+    
+    .agenda li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-weight: bold;
+    }
+    
+    .bonus-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+    
+    .bonus {
+      text-align: center;
+      padding: 1.5rem;
+      background: var(--light);
+      border-radius: 8px;
+      transition: var(--transition);
+    }
+    
+    .bonus:hover {
+      transform: translateY(-5px);
+      background: var(--primary);
+    }
+    
+    .bonus:hover i, .bonus:hover h4 {
+      color: var(--white);
+    }
+    
+    .bonus i {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      transition: var(--transition);
+    }
+    
+    .bonus h4 {
+      font-size: 1.1rem;
+      color: var(--dark);
+      transition: var(--transition);
+    }
+    
+    /* Registration Form */
+    .form-section {
+      background: var(--light);
+      text-align: center;
+    }
+    
+    .form-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--white);
+      padding: 2.5rem;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    
+    .form-group i {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gray);
+    }
+    
+    input {
+      width: 100%;
+      padding: 0.8rem 1rem 0.8rem 3rem;
+      border: 1px solid var(--light-gray);
+      border-radius: 4px;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+    
+    input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
+    }
+    
+    /* FAQ Section */
+    .faq {
+      background: var(--white);
+    }
+    
+    .faq-list {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .faq-item {
+      margin-bottom: 1rem;
+      border: 1px solid var(--light-gray);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    
+    .faq-question {
+      padding: 1.2rem;
+      background: var(--light);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+    
+    .faq-question:hover {
+      background: var(--primary);
+      color: var(--white);
+    }
+    
+    .faq-question i {
+      transition: var(--transition);
+    }
+    
+    .faq-item.active .faq-question i {
+      transform: rotate(180deg);
+    }
+    
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+    
+    .faq-item.active .faq-answer {
+      max-height: 300px;
+    }
+    
+    .answer-content {
+      padding: 1.5rem;
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: var(--light-gray);
+      padding: 4rem 0 2rem;
+      text-align: center;
+    }
+    
+    .footer-content {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .footer-content .logo {
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    
+    .footer-content .logo i {
+      color: var(--primary);
+    }
+    
+    .footer-content .logo-text {
+      color: var(--white);
+    }
+    
+    .footer-content p {
+      margin-bottom: 1.5rem;
+      color: var(--light-gray);
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      color: var(--white);
+      transition: var(--transition);
+    }
+    
+    .social-links a:hover {
+      background: var(--primary);
+      transform: translateY(-5px);
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .agenda-bonuses > .container {
+        grid-template-columns: 1fr;
+      }
+      
+      .agenda-bonuses {
+        background: var(--light);
+      }
+      
+      .hero h2 {
+        font-size: 2.4rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--white);
+        flex-direction: column;
+        padding: 1rem;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+      }
+      
+      nav.active {
+        display: flex;
+      }
+      
+      .mobile-menu {
+        display: block;
+      }
+      
+      .countdown {
+        flex-wrap: wrap;
+      }
+      
+      .countdown-item {
+        min-width: 70px;
+      }
+      
+      .bonus-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .section {
+        padding: 3rem 0;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+      
+      .hero {
+        padding: 6rem 0 3rem;
+      }
+      
+      .hero h2 {
+        font-size: 2rem;
+      }
+      
+      .countdown-item {
+        min-width: 60px;
+        padding: 0.8rem;
+      }
+      
+      .countdown-number {
+        font-size: 1.5rem;
+      }
+      
+      .form-container {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="logo">
+        <i class="fas fa-chart-line"></i>
+        <span class="logo-text">SEO Masterclass</span>
+      </div>
+      
+      <nav id="nav">
+        <a href="#hero">Home</a>
+        <a href="#agenda">Agenda</a>
+        <a href="#bonuses">Bonuses</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <div class="mobile-menu" id="mobileMenu">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-content animate">
+        <h2>Discover the Secrets of SEO Success</h2>
+        <p>Join our free live webinar and learn how to rank higher, grow traffic, and dominate search results.</p>
+
+        <div class="countdown-title">Webinar starts in:</div>
+        <div class="countdown" id="countdown">
+          <div class="countdown-item">
+            <div class="countdown-number" id="days">00</div>
+            <div class="countdown-label">Days</div>
+          </div>
+          <div class="countdown-item">
+            <div class="countdown-number" id="hours">00</div>
+            <div class="countdown-label">Hours</div>
+          </div>
+          <div class="countdown-item">
+            <div class="countdown-number" id="minutes">00</div>
+            <div class="countdown-label">Minutes</div>
+          </div>
+          <div class="countdown-item">
+            <div class="countdown-number" id="seconds">00</div>
+            <div class="countdown-label">Seconds</div>
+          </div>
+        </div>
+        
+        <div class="image-container">
+          <div class="image-box">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop" alt="SEO Webinar Promo Image" />
+            <div class="image-overlay">
+              <div class="play-icon">
+                <i class="fas fa-play"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <a href="#register" class="btn">
+          <i class="fas fa-calendar-check"></i> Reserve My Seat
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trusted Section -->
+  <section class="trusted section">
+    <div class="container">
+      <h2 class="section-title">Trusted By Industry Leaders</h2>
+      <div class="logos">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google Logo" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft Logo" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon Logo" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/01/LinkedIn_Logo.svg" alt="LinkedIn Logo" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials section" id="testimonials">
+    <div class="container">
+      <h2 class="section-title">What People Are Saying</h2>
+      <div class="cards">
+        <div class="card animate">
+          <div class="card-content">
+            <p>"The SEO strategies I learned in this webinar helped me double my organic traffic in just one month!"</p>
+            <div class="author">
+              <i class="fas fa-user"></i>
+              <span>Asha, Digital Marketer</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card animate">
+          <div class="card-content">
+            <p>"Finally, an SEO course that focuses on practical techniques rather than just theory. Highly recommended!"</p>
+            <div class="author">
+              <i class="fas fa-user"></i>
+              <span>Raj, E-commerce Owner</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card animate">
+          <div class="card-content">
+            <p>"The bonus materials alone are worth 10x the price. This webinar is an absolute game-changer!"</p>
+            <div class="author">
+              <i class="fas fa-user"></i>
+              <span>Neha, Content Creator</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Agenda & Bonuses -->
+  <section class="agenda-bonuses section">
+    <div class="container">
+      <div class="agenda animate" id="agenda">
+        <h3>Webinar Agenda</h3>
+        <ul>
+          <li>Latest SEO trends and algorithm updates</li>
+          <li>Proven ranking strategies that work in 2025</li>
+          <li>Technical SEO for lightning-fast websites</li>
+          <li>Content optimization for maximum visibility</li>
+          <li>Link-building tactics that actually work</li>
+          <li>Real-world case studies and success stories</li>
+          <li>Live Q&A session with SEO experts</li>
+        </ul>
+      </div>
+      
+      <div class="bonuses animate" id="bonuses">
+        <h3>Free Bonuses Worth ₹10,000</h3>
+        <div class="bonus-grid">
+          <div class="bonus">
+            <i class="fas fa-book"></i>
+            <h4>SEO Mastery eBook</h4>
+          </div>
+          <div class="bonus">
+            <i class="fas fa-file-excel"></i>
+            <h4>Keyword Research Template</h4>
+          </div>
+          <div class="bonus">
+            <i class="fas fa-tasks"></i>
+            <h4>On-Page SEO Checklist</h4>
+          </div>
+          <div class="bonus">
+            <i class="fas fa-chart-line"></i>
+            <h4>Rank Tracking Dashboard</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Registration Form -->
+  <section class="form-section section" id="register">
+    <div class="container">
+      <h2 class="section-title">Register For Free</h2>
+      <div class="form-container animate">
+        <form id="webinarForm">
+          <div class="form-group">
+            <i class="fas fa-user"></i>
+            <input type="text" name="name" placeholder="Your Full Name" required>
+          </div>
+          <div class="form-group">
+            <i class="fas fa-envelope"></i>
+            <input type="email" name="email" placeholder="Your Email" required>
+          </div>
+          <div class="form-group">
+            <i class="fas fa-phone"></i>
+            <input type="tel" name="phone" placeholder="Phone Number" required>
+          </div>
+          <button type="submit" class="btn">
+            <i class="fas fa-paper-plane"></i> Submit & Get Access
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq section" id="faq">
+    <div class="container">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Who is this webinar for?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <div class="answer-content">
+              This webinar is perfect for digital marketers, business owners, content creators, and anyone looking to improve their website's search engine visibility. Whether you're a beginner or have some SEO experience, you'll find valuable insights tailored to your level.
+            </div>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How is this different from other SEO courses?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <div class="answer-content">
+              Unlike traditional courses that focus on outdated tactics, our webinar teaches cutting-edge, Google-approved strategies that work in today's algorithm landscape. We focus on practical, actionable techniques you can implement immediately after the session.
+            </div>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Do I need any technical skills to benefit?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <div class="answer-content">
+              Not at all! We've designed the content to be accessible to everyone. We'll cover both beginner concepts and advanced techniques, with clear explanations that don't require any coding or technical background.
+            </div>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>When will I receive the bonus materials?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <div class="answer-content">
+              All bonus materials will be available immediately after the webinar. You'll receive an email with download links to all resources within 24 hours of the live session ending.
+            </div>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>What if I can't attend the live session?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <div class="answer-content">
+              Don't worry! All registered participants will receive a recording of the webinar within 48 hours after the live session. You'll have lifetime access to the recording and all bonus materials.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="logo">
+          <i class="fas fa-chart-line"></i>
+          <span class="logo-text">SEO Masterclass</span>
+        </div>
+        <p>Transform your online presence with our proven SEO strategies</p>
+<!--         
+        <div class="social-links">
+          <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div> -->
+        
+        <p>© 2025 SEO Masterclass. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Toggle mobile menu
+    const mobileMenu = document.getElementById('mobileMenu');
+    const nav = document.getElementById('nav');
+    
+    mobileMenu.addEventListener('click', () => {
+      nav.classList.toggle('active');
+      mobileMenu.innerHTML = nav.classList.contains('active') 
+        ? '<i class="fas fa-times"></i>' 
+        : '<i class="fas fa-bars"></i>';
+    });
+    
+    // Close mobile menu when clicking on links
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('active');
+        mobileMenu.innerHTML = '<i class="fas fa-bars"></i>';
+      });
+    });
+    
+    // FAQ toggle functionality
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      
+      question.addEventListener('click', () => {
+        item.classList.toggle('active');
+      });
+    });
+    
+    // Form submission
+    const form = document.getElementById('webinarForm');
+    
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      // Form validation
+      const name = form.elements['name'].value.trim();
+      const email = form.elements['email'].value.trim();
+      const phone = form.elements['phone'].value.trim();
+      
+      if (!name || !email || !phone) {
+        alert('Please fill in all required fields.');
+        return;
+      }
+      
+      if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+      
+      // In a real app, you would submit to a server here
+      alert('Thank you for registering! You will receive a confirmation email shortly.');
+      form.reset();
+    });
+    
+    // Animation on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+    
+    // Observe all elements with class 'animate'
+    document.querySelectorAll('.animate').forEach(el => {
+      observer.observe(el);
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          // Close mobile menu if open
+          nav.classList.remove('active');
+          mobileMenu.innerHTML = '<i class="fas fa-bars"></i>';
+          
+          window.scrollTo({
+            top: target.offsetTop - 70,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // Countdown timer
+    function updateCountdown() {
+      // Set the date for the webinar (next week at 10:00 AM)
+      const now = new Date();
+      const webinarDate = new Date();
+      webinarDate.setDate(now.getDate() + 7);
+      webinarDate.setHours(10, 0, 0, 0); // 10:00 AM
+      
+      const timeDiff = webinarDate - now;
+      
+      if (timeDiff <= 0) {
+        document.getElementById('countdown').innerHTML = '<div class="countdown-title">Webinar is live now!</div>';
+        return;
+      }
+      
+      const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+      
+      document.getElementById('days').textContent = days.toString().padStart(2, '0');
+      document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+      document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+      document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+    }
+    
+    // Initialize countdown and update every second
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+    
+    // Play button functionality
+    document.querySelector('.play-icon').addEventListener('click', () => {
+      alert('Webinar preview video would play here. In a real implementation, this would open a modal with a video player.');
+    });
+  </script>
+</body>
+</html>

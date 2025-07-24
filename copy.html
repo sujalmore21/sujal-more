@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golden Webinar | Premium Learning Experience</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* ====================
+           CSS VARIABLES & RESET
+           ==================== */
+        :root {
+            --primary: #FFD700;
+            --primary-dark: #D4AF37;
+            --primary-light: #FFF9C4;
+            --accent: #FF8C00;
+            --accent-dark: #FF6600;
+            --light-bg: #FFFFFF;
+            --light-bg-alt: #FFFDE7;
+            --card-bg: #FFFFFF;
+            --dark-text: #1A1200;
+            --medium-text: #5C4C00;
+            --border: #FFECB3;
+            --shadow: rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --border-radius: 12px;
+            --header-height: 70px;
+            --section-padding: clamp(3rem, 5vw, 5rem);
+            
+            /* New variables */
+            --glow: 0 0 15px rgba(255, 215, 0, 0.3);
+            --card-hover: 0 10px 30px rgba(212, 175, 55, 0.15);
+            --gold-gradient: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: calc(var(--header-height) + 20px);
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: var(--light-bg-alt);
+            color: var(--dark-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* =============
+           GLOBAL STYLES
+           ============= */
+        .container {
+            max-width: min(1200px, 92%);
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .section {
+            padding: var(--section-padding) 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-title h2 {
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            color: var(--dark-text);
+            margin-bottom: 1.2rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            line-height: 1.3;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gold-gradient);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            font-size: clamp(1rem, 2.2vw, 1.15rem);
+            color: var(--medium-text);
+            max-width: 700px;
+            margin: 1.2rem auto 0;
+            line-height: 1.7;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* =============
+           ANIMATIONS
+           ============= */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes pulse {
+            0% { 
+                transform: scale(1); 
+                box-shadow: 0 0 0 0 rgba(255, 140, 0, 0.7);
+            }
+            70% { 
+                transform: scale(1.05);
+                box-shadow: 0 0 0 12px rgba(255, 140, 0, 0);
+            }
+            100% { 
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 140, 0, 0);
+            }
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes shine {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        /* =============
+           COMPONENTS
+           ============= */
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gold-gradient);
+            background-size: 200% 200%;
+            color: #1A1200;
+            padding: 0.9rem 2.2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.25);
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            gap: 0.5rem;
+            min-height: 52px;
+            animation: gradientShift 4s ease infinite;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            opacity: 0;
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.35);
+        }
+
+        .btn:hover::before {
+            opacity: 1;
+        }
+
+        .btn:focus-visible {
+            outline: 3px solid var(--primary-light);
+            outline-offset: 2px;
+        }
+
+        .btn.accent {
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            box-shadow: 0 4px 15px rgba(255, 140, 0, 0.25);
+            color: white;
+        }
+
+        .btn.accent::before {
+            background: linear-gradient(135deg, var(--accent-dark), var(--accent));
+        }
+
+        .btn.accent:hover {
+            box-shadow: 0 8px 25px rgba(255, 140, 0, 0.35);
+        }
+
+        /* Cards */
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            border: 1px solid var(--border);
+            box-shadow: 0 5px 20px var(--shadow);
+            overflow: hidden;
+            transform: translateY(0);
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--card-hover);
+        }
+
+        /* =============
+           HEADER
+           ============= */
+        header {
+            background: var(--light-bg);
+            padding: 0.8rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px var(--shadow);
+            border-bottom: 1px solid var(--border);
+            height: var(--header-height);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+        }
+
+        header.scrolled {
+            height: 65px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .logo {
+            color: var(--primary-dark);
+            font-weight: 800;
+            font-size: clamp(1.4rem, 3vw, 1.7rem);
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Poppins', sans-serif;
+            position: relative;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gold-gradient);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease;
+        }
+
+        .logo:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* Navigation */
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        nav {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            position: relative;
+            padding: 0.5rem 0;
+            font-weight: 600;
+            color: var(--dark-text);
+            font-size: 1.05rem;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        nav a:hover::after,
+        nav a:focus-visible::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+            cursor: pointer;
+            background: none;
+            border: none;
+            position: relative;
+            width: 40px;
+            height: 40px;
+        }
+
+        .mobile-menu span {
+            position: absolute;
+            left: 5px;
+            height: 3px;
+            width: 30px;
+            background: var(--primary-dark);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        .mobile-menu span:nth-child(1) { top: 10px; }
+        .mobile-menu span:nth-child(2) { top: 18px; }
+        .mobile-menu span:nth-child(3) { top: 26px; }
+
+        .mobile-menu.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .mobile-menu.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .mobile-menu.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -8px);
+        }
+
+        /* =============
+           HERO SECTION
+           ============= */
+        .hero {
+            padding: calc(var(--header-height) + 3rem) 1.5rem 4rem;
+            text-align: center;
+            position: relative;
+            background: var(--light-bg);
+            overflow: hidden;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: min(600px, 80%);
+            height: min(600px, 80%);
+            aspect-ratio: 1/1;
+            border-radius: 50%;
+            background: var(--primary-light);
+            z-index: 0;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -10%;
+            left: -10%;
+            width: min(400px, 60%);
+            height: min(400px, 60%);
+            aspect-ratio: 1/1;
+            border-radius: 50%;
+            background: rgba(255, 140, 0, 0.1);
+            z-index: 0;
+            animation: float 10s ease-in-out infinite 1s;
+        }
+
+        .hero-content {
+            max-width: min(900px, 90%);
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5.5vw, 3.5rem);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            color: var(--dark-text);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .hero h1 span {
+            background: var(--gold-gradient);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            display: inline-block;
+            animation: shine 3s linear infinite;
+            background-size: 200% auto;
+        }
+
+        .hero p {
+            font-size: clamp(1.1rem, 2.8vw, 1.3rem);
+            color: var(--medium-text);
+            max-width: min(700px, 90%);
+            margin: 0 auto 2.5rem;
+            animation: fadeInUp 0.8s ease-out 0.2s forwards;
+            opacity: 0;
+            line-height: 1.7;
+        }
+
+        /* Date Section */
+        .date-section {
+            background: rgba(255, 215, 0, 0.07);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            max-width: min(600px, 90%);
+            margin: 2rem auto;
+            border: 1px solid var(--border);
+            backdrop-filter: blur(5px);
+            animation: fadeInUp 0.8s ease-out 0.4s forwards;
+            opacity: 0;
+        }
+
+        .date-section .date {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.2rem;
+            font-size: clamp(1rem, 2.2vw, 1.15rem);
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .date-section .date i {
+            margin-right: 8px;
+            color: var(--primary-dark);
+        }
+
+        .seats-left {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: clamp(1rem, 2.2vw, 1.15rem);
+            margin: 1rem 0;
+            display: block;
+            animation: pulse 2s infinite;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            margin: 1.5rem auto;
+            max-width: min(600px, 90%);
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease-out 0.6s forwards;
+            opacity: 0;
+        }
+
+        .countdown-item {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 1rem;
+            min-width: min(75px, 22%);
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .countdown-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--glow);
+        }
+
+        .countdown-number {
+            font-size: clamp(1.4rem, 3vw, 1.7rem);
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .countdown-label {
+            font-size: clamp(0.75rem, 1.5vw, 0.85rem);
+            color: var(--medium-text);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.3rem;
+        }
+
+        /* =============
+           FEATURES
+           ============= */
+        .features {
+            background: var(--light-bg);
+            text-align: center;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            padding: 2.2rem 1.8rem;
+            text-align: center;
+            animation: fadeInUp 0.6s ease-out;
+            animation-fill-mode: both;
+            transition: all 0.4s ease;
+            border-radius: var(--border-radius);
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--card-hover);
+        }
+
+        .feature-card:nth-child(1) { animation-delay: 0.1s; }
+        .feature-card:nth-child(2) { animation-delay: 0.2s; }
+        .feature-card:nth-child(3) { animation-delay: 0.3s; }
+        .feature-card:nth-child(4) { animation-delay: 0.4s; }
+
+        .feature-card i {
+            font-size: 2.8rem;
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            background: var(--primary-light);
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover i {
+            transform: translateY(-10px);
+            box-shadow: var(--glow);
+        }
+
+        .feature-card h3 {
+            font-size: clamp(1.2rem, 2.2vw, 1.35rem);
+            margin-bottom: 1rem;
+            color: var(--dark-text);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .feature-card p {
+            color: var(--medium-text);
+            font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+            line-height: 1.7;
+        }
+
+        /* =============
+           INSTRUCTOR
+           ============= */
+        .instructor {
+            background: var(--light-bg-alt);
+        }
+
+        .instructor-container {
+            max-width: min(900px, 90%);
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .instructor-photo {
+            flex: 1;
+            min-width: min(280px, 100%);
+            animation: fadeInUp 0.8s ease-out;
+            position: relative;
+        }
+
+        .instructor-photo::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            width: 100%;
+            height: 100%;
+            border: 3px solid var(--primary);
+            border-radius: var(--border-radius);
+            z-index: -1;
+            transition: var(--transition);
+        }
+
+        .instructor-photo img {
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .instructor-photo:hover::before {
+            top: 10px;
+            left: 10px;
+        }
+
+        .instructor-photo:hover img {
+            transform: translate(-5px, -5px);
+        }
+
+        .instructor-details {
+            flex: 2;
+            min-width: min(300px, 100%);
+            animation: fadeInUp 0.8s ease-out 0.2s forwards;
+            opacity: 0;
+        }
+
+        .instructor-details h2 {
+            font-size: clamp(1.8rem, 3.2vw, 2.3rem);
+            margin-bottom: 1.5rem;
+            color: var(--primary-dark);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .instructor-details p {
+            margin-bottom: 1.2rem;
+            font-size: clamp(1rem, 2.1vw, 1.1rem);
+            line-height: 1.7;
+            color: var(--medium-text);
+        }
+
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            justify-content: center;
+        }
+
+        .stat {
+            background: rgba(255, 215, 0, 0.07);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid var(--border);
+            min-width: 110px;
+            transition: var(--transition);
+        }
+
+        .stat:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--glow);
+        }
+
+        .stat .number {
+            font-size: clamp(1.5rem, 3vw, 1.9rem);
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .stat .label {
+            font-size: 0.9rem;
+            color: var(--medium-text);
+        }
+
+        /* =============
+           AUDIENCE
+           ============= */
+        .audience {
+            background: var(--light-bg);
+        }
+
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+            gap: 1.8rem;
+            max-width: min(1000px, 90%);
+            margin: 0 auto;
+        }
+
+        .audience-card {
+            padding: 1.8rem 1.5rem;
+            text-align: center;
+            animation: fadeInUp 0.6s ease-out;
+            animation-fill-mode: both;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s ease;
+        }
+
+        .audience-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--card-hover);
+        }
+
+        .audience-card:nth-child(1) { animation-delay: 0.1s; }
+        .audience-card:nth-child(2) { animation-delay: 0.2s; }
+        .audience-card:nth-child(3) { animation-delay: 0.3s; }
+        .audience-card:nth-child(4) { animation-delay: 0.4s; }
+
+        .audience-card i {
+            font-size: 2.4rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            background: var(--primary-light);
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            transition: var(--transition);
+        }
+
+        .audience-card:hover i {
+            transform: scale(1.1);
+            box-shadow: var(--glow);
+        }
+
+        .audience-card h3 {
+            font-size: 1.2rem;
+            color: var(--dark-text);
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 0.8rem;
+        }
+
+        .audience-card p {
+            color: var(--medium-text);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* =============
+           CTA SECTION
+           ============= */
+        .cta-section {
+            padding: var(--section-padding) 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            position: relative;
+            color: white;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
+            z-index: 1;
+            animation: gradientShift 6s ease infinite;
+        }
+
+        .cta-container {
+            max-width: min(700px, 90%);
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+            margin-bottom: 1.5rem;
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.3;
+        }
+
+        .cta-section p {
+            font-size: clamp(1.1rem, 2.5vw, 1.25rem);
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.95);
+            line-height: 1.7;
+        }
+
+        .seats-badge {
+            background: var(--accent);
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 700;
+            display: inline-block;
+            margin: 1.5rem 0;
+            animation: pulse 2s infinite;
+            font-size: 1.1rem;
+        }
+
+        /* =============
+           FORM SECTION
+           ============= */
+        .form-section {
+            background: var(--light-bg-alt);
+            text-align: center;
+        }
+
+        .form-container {
+            max-width: min(500px, 90%);
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        #webinarForm {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-group i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--medium-text);
+            z-index: 1;
+            transition: var(--transition);
+        }
+
+        #webinarForm input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            font-size: 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--light-bg);
+            color: var(--dark-text);
+            transition: var(--transition);
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        #webinarForm input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+        }
+
+        #webinarForm input:focus + i {
+            color: var(--primary-dark);
+            transform: translateY(-50%) scale(1.2);
+        }
+
+        #webinarForm input::placeholder {
+            color: var(--medium-text);
+            opacity: 0.8;
+        }
+
+        /* =============
+           FOOTER
+           ============= */
+        footer {
+            background: var(--light-bg);
+            text-align: center;
+            padding: 2.5rem;
+            color: var(--medium-text);
+            border-top: 1px solid var(--border);
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gold-gradient);
+        }
+
+        .footer-content {
+            max-width: min(600px, 90%);
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.8rem 0;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--light-bg-alt);
+            color: var(--primary-dark);
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover,
+        .social-links a:focus {
+            background: var(--primary-dark);
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: var(--glow);
+        }
+
+        .copyright {
+            font-size: 0.95rem;
+            margin-top: 1.5rem;
+        }
+
+        /* ====================
+           UTILITY CLASSES
+           ==================== */
+        .animate {
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0;
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* ====================
+           RESPONSIVE DESIGN
+           ==================== */
+        @media (max-width: 992px) {
+            :root {
+                --section-padding: clamp(2.8rem, 5vw, 4rem);
+            }
+            
+            .features-grid,
+            .audience-grid {
+                gap: 1.8rem;
+            }
+            
+            .feature-card {
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                gap: 1rem;
+            }
+            
+            nav {
+                position: fixed;
+                top: var(--header-height);
+                left: 0;
+                width: 100%;
+                background: var(--light-bg);
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                gap: 1.5rem;
+                transform: translateY(-150%);
+                transition: transform 0.4s ease;
+                z-index: 999;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+            }
+            
+            nav.active {
+                transform: translateY(0);
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .instructor-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .stats {
+                justify-content: center;
+            }
+            
+            .date-section .date {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: calc(var(--header-height) + 2rem) 1.5rem 3rem;
+            }
+            
+            .section-title {
+                margin-bottom: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            :root {
+                --section-padding: clamp(2.5rem, 5vw, 3.5rem);
+                --header-height: 65px;
+            }
+            
+            header {
+                padding: 0.7rem 1.2rem;
+            }
+            
+            .form-container {
+                padding: 2rem 1.5rem;
+            }
+            
+            .feature-card,
+            .audience-card {
+                padding: 1.8rem 1.2rem;
+            }
+            
+            .countdown-item {
+                min-width: 70px;
+                padding: 0.9rem;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+            .section {
+                padding: var(--section-padding) 1.2rem; 
+            }
+            
+            .hero h1 {
+                font-size: clamp(1.8rem, 6vw, 2.5rem);
+            }
+        }
+
+        /* Reduced motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <a href="#" class="logo">
+                <i class="fas fa-crown"></i>GoldenWebinar
+            </a>
+            
+            <div class="nav-container">
+                <nav id="nav">
+                    <a href="#features">Features</a>
+                    <a href="#instructor">Instructor</a>
+                    <a href="#audience">For You</a>
+                    <a href="#register">Register</a>
+                </nav>
+                <button class="mobile-menu" id="mobileMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Master <span>Digital Marketing</span> with Industry Experts</h1>
+                <p>Join our exclusive webinar and learn the secrets to building a successful online presence from top marketing professionals. Limited seats available!</p>
+                
+                <div class="date-section">
+                    <div class="date">
+                        <div><i class="far fa-calendar"></i> June 25, 2023</div>
+                        <div><i class="far fa-clock"></i> 2:00 PM - 4:00 PM EST</div>
+                    </div>
+                    <span class="seats-left">Only 23 seats left!</span>
+                </div>
+                
+                <div class="countdown">
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="days">12</div>
+                        <div class="countdown-label">Days</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="hours">08</div>
+                        <div class="countdown-label">Hours</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="minutes">45</div>
+                        <div class="countdown-label">Minutes</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="seconds">30</div>
+                        <div class="countdown-label">Seconds</div>
+                    </div>
+                </div>
+                
+                <a href="#register" class="btn">Reserve Your Spot Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>What You'll Learn</h2>
+                <p>Our comprehensive webinar covers everything you need to succeed in today's digital landscape</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Growth Strategies</h3>
+                    <p>Proven techniques to scale your business and increase revenue through digital channels.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-bullseye"></i>
+                    <h3>Targeted Advertising</h3>
+                    <p>Learn how to reach your ideal audience with precision targeting across platforms.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-search"></i>
+                    <h3>SEO Mastery</h3>
+                    <p>Advanced SEO strategies to dominate search rankings and drive organic traffic.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Social Media Domination</h3>
+                    <p>Build engaged communities and convert followers into loyal customers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instructor Section -->
+    <section class="instructor" id="instructor">
+        <div class="container">
+            <div class="section-title">
+                <h2>Meet Your Instructor</h2>
+                <p>Learn from an industry leader with proven success in digital marketing</p>
+            </div>
+            
+            <div class="instructor-container">
+                <div class="instructor-photo">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Alex Johnson - Digital Marketing Expert">
+                </div>
+                
+                <div class="instructor-details">
+                    <h2>Alex Johnson</h2>
+                    <p>With over 12 years of experience in digital marketing, Alex has helped more than 200 businesses transform their online presence. Former Head of Marketing at TechGrowth Inc., Alex now consults for Fortune 500 companies while sharing knowledge through workshops and webinars.</p>
+                    <p>Alex's unique approach combines data-driven strategies with creative solutions to deliver measurable results in competitive markets.</p>
+                    
+                    <div class="stats">
+                        <div class="stat">
+                            <div class="number">12+</div>
+                            <div class="label">Years Experience</div>
+                        </div>
+                        <div class="stat">
+                            <div class="number">200+</div>
+                            <div class="label">Clients Served</div>
+                        </div>
+                        <div class="stat">
+                            <div class="number">97%</div>
+                            <div class="label">Satisfaction Rate</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Audience Section -->
+    <section class="audience" id="audience">
+        <div class="container">
+            <div class="section-title">
+                <h2>Who Should Attend</h2>
+                <p>This webinar is perfect for professionals at various stages of their career</p>
+            </div>
+            
+            <div class="audience-grid">
+                <div class="audience-card">
+                    <i class="fas fa-user-tie"></i>
+                    <h3>Marketing Managers</h3>
+                    <p>Enhance your strategies and stay ahead of industry trends</p>
+                </div>
+                
+                <div class="audience-card">
+                    <i class="fas fa-store"></i>
+                    <h3>Small Business Owners</h3>
+                    <p>Learn cost-effective ways to grow your business online</p>
+                </div>
+                
+                <div class="audience-card">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Recent Graduates</h3>
+                    <p>Gain practical skills to boost your career prospects</p>
+                </div>
+                
+                <div class="audience-card">
+                    <i class="fas fa-sync-alt"></i>
+                    <h3>Career Changers</h3>
+                    <p>Transition into the exciting field of digital marketing</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-container">
+                <h2>Transform Your Digital Strategy Today</h2>
+                <p>Don't miss this opportunity to learn from the best in the industry and take your skills to the next level</p>
+                
+                <span class="seats-badge">Only 23 Seats Remaining</span>
+                
+                <a href="#register" class="btn accent">Secure Your Spot Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form Section -->
+    <section class="form-section" id="register">
+        <div class="container">
+            <div class="section-title">
+                <h2>Register Now</h2>
+                <p>Reserve your spot for this exclusive webinar experience</p>
+            </div>
+            
+            <div class="form-container">
+                <form id="webinarForm">
+                    <div class="form-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" placeholder="Full Name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" placeholder="Email Address" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <i class="fas fa-briefcase"></i>
+                        <input type="text" placeholder="Company/Organization">
+                    </div>
+                    
+                    <div class="form-group">
+                        <i class="fas fa-phone"></i>
+                        <input type="tel" placeholder="Phone Number">
+                    </div>
+                    
+                    <button type="submit" class="btn">Register Now</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <a href="#" class="logo">
+                    <i class="fas fa-crown"></i>GoldenWebinar
+                </a>
+                
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+                
+                <p class="copyright">© 2023 GoldenWebinar. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenu = document.getElementById('mobileMenu');
+        const nav = document.getElementById('nav');
+        
+        mobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            nav.classList.toggle('active');
+        });
+        
+        // Close menu when clicking on a link
+        document.querySelectorAll('#nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                nav.classList.remove('active');
+            });
+        });
+        
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Countdown timer
+        function updateCountdown() {
+            const now = new Date();
+            const targetDate = new Date(now);
+            targetDate.setDate(now.getDate() + 12);
+            targetDate.setHours(14, 0, 0, 0); // Set to 2 PM
+            
+            const diff = targetDate - now;
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+        
+        // Initialize countdown
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+        
+        // Form submission
+        document.getElementById('webinarForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for registering! We have sent a confirmation email with webinar details.');
+            this.reset();
+        });
+        
+        // Animation on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.animate');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.animation = 'fadeInUp 0.8s ease forwards';
+                }
+            });
+        };
+        
+        // Initialize scroll animations
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>

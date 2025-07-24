@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ Section - Dark Yellow & Black Theme</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .faq-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            text-shadow: 0 4px 8px rgba(255, 215, 0, 0.3);
+        }
+
+        .faq-subtitle {
+            font-size: 1.2rem;
+            color: #cccccc;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+
+        .faq-item {
+            background: rgba(255, 215, 0, 0.05);
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+        }
+
+        .faq-item:hover {
+            border-color: #FFD700;
+            box-shadow: 0 8px 32px rgba(255, 215, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .faq-question {
+            padding: 25px 30px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 165, 0, 0.05));
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .faq-question:hover {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 165, 0, 0.1));
+        }
+
+        .faq-question.active {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 165, 0, 0.15));
+        }
+
+        .question-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #ffffff;
+            flex-grow: 1;
+            margin-right: 20px;
+            line-height: 1.4;
+        }
+
+        .toggle-icon {
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .toggle-icon::before {
+            content: '+';
+            color: #000;
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active .toggle-icon {
+            transform: rotate(45deg);
+            background: linear-gradient(135deg, #FFA500, #FFD700);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .faq-answer.active {
+            max-height: 300px;
+        }
+
+        .answer-content {
+            padding: 25px 30px;
+            color: #cccccc;
+            font-size: 1rem;
+            line-height: 1.6;
+            border-top: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .cta-section {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #000;
+            padding: 20px 40px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 215, 0, 0.4);
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .urgency-bar {
+            background: rgba(255, 0, 0, 0.1);
+            border: 1px solid rgba(255, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .urgency-text {
+            color: #ff6b6b;
+            font-weight: 600;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .urgency-icon {
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .faq-title {
+                font-size: 2.5rem;
+            }
+            
+            .faq-question {
+                padding: 20px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .question-text {
+                margin-right: 0;
+            }
+            
+            .toggle-icon {
+                align-self: flex-end;
+            }
+            
+            .answer-content {
+                padding: 20px;
+            }
+        }
+
+        /* Smooth scrolling animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .faq-item {
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        .faq-item:nth-child(1) { animation-delay: 0.1s; }
+        .faq-item:nth-child(2) { animation-delay: 0.2s; }
+        .faq-item:nth-child(3) { animation-delay: 0.3s; }
+        .faq-item:nth-child(4) { animation-delay: 0.4s; }
+        .faq-item:nth-child(5) { animation-delay: 0.5s; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="faq-header">
+            <h1 class="faq-title">Frequently Asked Questions</h1>
+            <p class="faq-subtitle">Got questions? We have got answers</p>
+        </div>
+
+        <div class="faq-list">
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span class="question-text">Who is this for?</span>
+                    <div class="toggle-icon"></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="answer-content">
+                        This comprehensive program is designed for individuals looking to transform their health through proven, science-based methods. Whether you're a beginner or have experience with health and wellness, our approach is tailored to meet you where you are in your journey.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span class="question-text">How is this different?</span>
+                    <div class="toggle-icon"></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="answer-content">
+                        Unlike traditional approaches that focus on temporary fixes, our method addresses root causes through sustainable lifestyle changes. We combine cutting-edge research with practical, easy-to-implement strategies that create lasting transformation without extreme measures.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span class="question-text">I have consulted many doctors but my condition is still the same, will this work?</span>
+                    <div class="toggle-icon"></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="answer-content">
+                        We understand your frustration. Our approach works alongside traditional medicine by focusing on lifestyle factors that many conventional treatments overlook. We've helped thousands of people who felt stuck with their current treatments discover new pathways to better health.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span class="question-text">When can I access the bonuses?</span>
+                    <div class="toggle-icon"></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="answer-content">
+                        All bonus materials are available immediately upon enrollment. You'll receive instant access to downloadable resources, exclusive video content, and premium tools that complement your main program. Everything is accessible 24/7 from your personal dashboard.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span class="question-text">How Long Is the Workshop?</span>
+                    <div class="toggle-icon"></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="answer-content">
+                        The core workshop is approximately 90 minutes of concentrated, high-value content. However, you'll also receive additional resources and follow-up materials that you can access at your own pace. The program is designed to respect your time while delivering maximum impact.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <a href="#" class="cta-button">Register Now & get Free 1:1 Consultation</a>
+            
+            <div class="urgency-bar">
+                <div class="urgency-text">
+                    <span class="urgency-icon">⚠️</span>
+                    Hurry! Seats Of This Webinar As Of Today Is Low
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            const answer = faqItem.querySelector('.faq-answer');
+            const question = faqItem.querySelector('.faq-question');
+            
+            // Close all other FAQ items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                if (item !== faqItem) {
+                    item.querySelector('.faq-answer').classList.remove('active');
+                    item.querySelector('.faq-question').classList.remove('active');
+                }
+            });
+            
+            // Toggle current FAQ item
+            answer.classList.toggle('active');
+            question.classList.toggle('active');
+        }
+
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effects to FAQ items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    if (!this.querySelector('.faq-question').classList.contains('active')) {
+                        this.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+
+            // Smooth scroll effect for CTA button
+            document.querySelector('.cta-button').addEventListener('click', function(e) {
+                e.preventDefault();
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'translateY(-3px) scale(1)';
+                }, 100);
+            });
+        });
+    </script>
+</body>
+</html>
